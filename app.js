@@ -15,6 +15,7 @@ let staticServer = new nodeStatic.Server('./node_modules');
 require('http').createServer(function (request, response) {
 	if (request.url === '/') {
 		response.end(indexHtml(todomvc.TodoAppComponent(vm, view)));
+		return;
 	}
 
 	request.addListener('end', function () {
