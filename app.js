@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 8085;
 
 const nodeStatic = require('node-static');
 const SatoriServer = require('satori-server').SatoriServer;
-const todomvc = require('./todomvc');
+const todomvc = require('satori-todomvc/js/todomvc');
 const indexHtml = require('./index.html');
 
 let view = new SatoriServer();
