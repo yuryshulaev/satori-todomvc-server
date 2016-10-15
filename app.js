@@ -5,9 +5,7 @@ const PORT = process.env.PORT || 8085;
 const http = require('http');
 const nodeStatic = require('node-static');
 const SatoriServer = require('satori-server').SatoriServer;
-const {TodosModel, Todo} = require('satori-todomvc/js/model');
-const {ViewModel} = require('satori-todomvc/js/viewmodel');
-const {TodoAppComponent} = require('satori-todomvc/js/view');
+const {TodosModel, Todo, ViewModel, TodoAppView} = require('satori-todomvc/js/todomvc');
 const indexHtml = require('./index.html');
 
 let view = new SatoriServer();
@@ -17,7 +15,7 @@ let staticServer = new nodeStatic.Server('./node_modules');
 
 http.createServer(function (request, response) {
 	if (request.url === '/') {
-		response.end(indexHtml(TodoAppComponent(vm, view)));
+		response.end(indexHtml(TodoAppView(vm, view)));
 		return;
 	}
 
