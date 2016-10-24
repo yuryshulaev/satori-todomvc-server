@@ -8,14 +8,14 @@ const SatoriServer = require('satori-server').SatoriServer;
 const {TodosModel, Todo, ViewModel, TodoAppView} = require('satori-todomvc/js/todomvc');
 const indexHtml = require('./index.html');
 
-let view = new SatoriServer();
-let model = new TodosModel(require('./data.json').map(todo => new Todo(todo)));
-let vm = new ViewModel(model, view);
-let staticServer = new nodeStatic.Server('./node_modules');
+const view = new SatoriServer();
+const model = new TodosModel(require('./data.json').map(todo => new Todo(todo)));
+const vm = new ViewModel(model, view);
+const staticServer = new nodeStatic.Server('./node_modules');
 
 http.createServer(function (request, response) {
 	if (request.url === '/') {
-		response.end(indexHtml(TodoAppView(vm, view)));
+		response.end(indexHtml(TodoAppView(vm, view, view.h)));
 		return;
 	}
 
